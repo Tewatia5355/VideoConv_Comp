@@ -88,7 +88,7 @@ def conv_code(file_name):
     os.chdir(out_image_dir)
 
     # Path of output video file
-    pathOut = join(curr_path, videoName+"_output"+videoExtension)
+    pathOut = join(curr_path, videoName+"_output.mp4")
 
     # Checking if output file exists, if yes it will remove it
     if os.path.exists(pathOut):
@@ -104,7 +104,8 @@ def conv_code(file_name):
         size = (width, height)
         img_array.append(img)
 
-    out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(*'XVID'), fps, size)
+    out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(
+        'm', 'p', '4', 'v'), fps, size, isColor=False)
 
     for i in range(len(img_array)):
         out.write(img_array[i])
@@ -117,17 +118,18 @@ def conv_code(file_name):
     cv2.destroyAllWindows()
 
     # Deleting all the intermediate images (Comment lines below if you wanna see them)
-
+    shutil.copy(pathOut, cur_path+"\\output")
+    pathOutt = join(cur_path + "\\output", videoName+"_output.mp4")
     try:
+        os.remove(pathOut)
         shutil.rmtree(new_path)
         os.remove(file_path)
     except OSError:
         print("Error in removing raw folder images")
-
     try:
         shutil.rmtree(out_image_dir)
     except OSError:
         print("Error in removing output folder images")
 
     # print("Code terminated successfully!!")
-    return pathOut, 0
+    return pathOutt, 0

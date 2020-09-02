@@ -94,14 +94,14 @@ def comp_code(file_name, scale_percent):
     os.chdir(out_image_dir)
 
   # Path of output video file
-    pathOut = join(curr_path, videoName+"_output"+videoExtension)
+    pathOut = join(curr_path, videoName+"_output.mp4")
 
-  # Checking if output file exists, if yes it will remove it
+    # Checking if output file exists, if yes it will remove it
     if os.path.exists(pathOut):
         # print("Old output file Detected: removing it!!")
         os.remove(pathOut)
 
-  # Process of making video starts
+    # Process of making video starts
     # print("Output file is been generated...")
     img_array = []
     for filename in glob.glob('*.jpg'):
@@ -110,21 +110,24 @@ def comp_code(file_name, scale_percent):
         size = (width, height)
         img_array.append(img)
 
-    out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+    out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(
+        'm', 'p', '4', 'v'), fps, size, isColor=False)
 
     for i in range(len(img_array)):
         out.write(img_array[i])
     # print("Output File is generated.")
 
-  # Releases all variable
+    # Releases all variable
     os.chdir(cur_path)
     out.release()
     cap.release()
     cv2.destroyAllWindows()
 
-  # Deleting all the intermediate images (Comment lines below if you wanna see them)
-
+    # Deleting all the intermediate images (Comment lines below if you wanna see them)
+    shutil.copy(pathOut, cur_path+"\\output")
+    pathOutt = join(cur_path + "\\output", videoName+"_output.mp4")
     try:
+        os.remove(pathOut)
         shutil.rmtree(new_path)
         os.remove(file_path)
     except OSError:
@@ -136,4 +139,4 @@ def comp_code(file_name, scale_percent):
         print("Error in removing output folder images")
 
     # print("Code terminated successfully!!")
-    return pathOut, 0
+    return pathOutt, 0
