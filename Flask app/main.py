@@ -69,8 +69,7 @@ def process_file():
             output_file, success_code = comp_code(filename, scale_percent)
             # app.logger.info(str(req_process)+"  "+str(emailId)+"  "+str(scale_percent))
         if success_code == 0:
-            uploaded_file.save(os.path.join(
-                app.config['OUTPUT_PATH'], output_file))
+            app.logger.info('Thanks')
         else:
             app.logger.error(output_file)
             abort(400)
