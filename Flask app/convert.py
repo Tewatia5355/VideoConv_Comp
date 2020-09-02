@@ -71,7 +71,8 @@ def conv_code(file_name):
     cap.release()
     cv2.destroyAllWindows()
 
-    pathOutt = join(cur_path + "\\output", videoName+"_output"+videoExtension)
+    out_name = videoName+"_output"+videoExtension
+    pathOutt = join(cur_path + "\\output", out_name)
     if os.path.exists(pathOutt):
         # print("Old output file Detected: removing it!!")
         os.remove(pathOutt)
@@ -82,4 +83,4 @@ def conv_code(file_name):
     except OSError:
         print("Error in removing raw folder images")
     # print("Code terminated successfully!!")
-    return pathOutt, 0
+    return pathOutt, out_name, 0
