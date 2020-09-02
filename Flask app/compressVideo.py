@@ -111,7 +111,7 @@ def comp_code(file_name, scale_percent):
         img_array.append(img)
 
     out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(
-        'm', 'p', '4', 'v'), fps, size, isColor=False)
+        'm', 'p', '4', 'v'), fps, size)
 
     for i in range(len(img_array)):
         out.write(img_array[i])
