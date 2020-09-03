@@ -77,3 +77,7 @@ def process_file():
         else:
             app.logger.error(output_file)
             abort(400)
+
+
+if __name__ == "__main__":
+    app.run()
