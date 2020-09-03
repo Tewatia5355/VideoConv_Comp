@@ -14,7 +14,7 @@ from convert import conv_code
 from compressVideo import comp_code
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 1024*1024*150
+app.config['MAX_CONTENT_LENGTH'] = 1024*1024*75
 app.config['UPLOAD_EXTENSIONS'] = ['.mp4', '.m4v', '.mkv',
                                    '.webm', '.mov', '.avi', '.wmv', '.mpg', '.flv']
 app.config['UPLOAD_PATH'] = 'uploads'
@@ -70,6 +70,8 @@ def process_file():
         file_ext = os.path.splitext(filename)[1]
         if file_ext not in app.config['UPLOAD_EXTENSIONS']:
             abort(400)
+        if os.path.exists(join(app.config['UPLOAD_PATH'], filename)):
+            os.remove(join(app.config['UPLOAD_PATH'], filename))
         uploaded_file.save(join(app.config['UPLOAD_PATH'], filename))
         if req_process == 'convert':
             output_file, out_name, success_code = conv_code(filename)

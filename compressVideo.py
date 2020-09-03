@@ -66,7 +66,7 @@ def comp_code(file_name, scale_percent):
     for i in range(len(img_array)):
         out.write(img_array[i])
     # print("Output File is generated.")
-
+    del img_array
     # Releases all variable
     os.chdir(cur_path)
     out.release()

@@ -49,6 +49,7 @@ def conv_code(file_name):
     # print("Frames Extracted Successfully.")
     # print(len(img_array))
     # Path of output video file
+
     pathOut = join(curr_path, videoName+"_output"+videoExtension)
 
     # Checking if output file exists, if yes it will remove it
@@ -65,6 +66,7 @@ def conv_code(file_name):
         out.write(img_array[i])
     # print("Output File is generated.")
 
+    del img_array
     # Releases all variable
     os.chdir(cur_path)
     out.release()
@@ -82,5 +84,6 @@ def conv_code(file_name):
         os.remove(file_path)
     except OSError:
         print("Error in removing raw folder images")
+
     # print("Code terminated successfully!!")
     return pathOutt, out_name, 0
