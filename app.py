@@ -57,10 +57,13 @@ def process_file():
     output_file = filename
     currr_path = os.getcwd()
     temp = currr_path + "/output"
-    os.chdir(temp)
-    files = glob.glob('*')
-    for f in files:
-        os.remove(f)
+    if os.path.exists(temp):
+        os.chdir(temp)
+        files = glob.glob('*')
+        for f in files:
+            os.remove(f)
+    else:
+        os.mkdir(temp)
     os.chdir(currr_path)
     success_code = -1
     if filename != '':
