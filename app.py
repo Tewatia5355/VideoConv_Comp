@@ -21,6 +21,11 @@ app.config['UPLOAD_PATH'] = 'uploads'
 app.config['OUTPUT_PATH'] = 'output'
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('error.html')
+
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -72,7 +77,3 @@ def process_file():
         else:
             app.logger.error(output_file)
             abort(400)
-
-
-if __name__ == "__main__":
-    app.run()
