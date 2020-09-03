@@ -56,7 +56,7 @@ def process_file():
     emailId = request.form['emailaddress']
     output_file = filename
     currr_path = os.getcwd()
-    temp = currr_path + "\\output"
+    temp = currr_path + "/output"
     os.chdir(temp)
     files = glob.glob('*')
     for f in files:

@@ -13,8 +13,8 @@ from os.path import isfile, join
 def conv_code(file_name):
     # Getting current path
     cur_path = os.getcwd()
-    file_path = os.path.join(cur_path+"\\uploads", file_name)
-    curr_path = cur_path + "\\processing"
+    file_path = os.path.join(cur_path+"/uploads", file_name)
+    curr_path = cur_path + "/processing"
     os.chdir(curr_path)
 
     # Checks if file is a video file or not
@@ -72,11 +72,11 @@ def conv_code(file_name):
     cv2.destroyAllWindows()
 
     out_name = videoName+"_output"+videoExtension
-    pathOutt = join(cur_path + "\\output", out_name)
+    pathOutt = join(cur_path + "/output", out_name)
     if os.path.exists(pathOutt):
         # print("Old output file Detected: removing it!!")
         os.remove(pathOutt)
-    shutil.copy(pathOut, cur_path+"\\output")
+    shutil.copy(pathOut, cur_path+"/output")
     try:
         os.remove(pathOut)
         os.remove(file_path)

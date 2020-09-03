@@ -16,8 +16,8 @@ def comp_code(file_name, scale_percent):
 
   # Getting current path
     cur_path = os.getcwd()
-    file_path = os.path.join(cur_path+"\\uploads", file_name)
-    curr_path = cur_path + "\\processing"
+    file_path = os.path.join(cur_path+"/uploads", file_name)
+    curr_path = cur_path + "/processing"
     os.chdir(curr_path)
 
   # Checks if file is a video file or not
@@ -74,11 +74,11 @@ def comp_code(file_name, scale_percent):
     cv2.destroyAllWindows()
 
     out_name = videoName+"_output"+videoExtension
-    pathOutt = join(cur_path + "\\output", out_name)
+    pathOutt = join(cur_path + "/output", out_name)
     if os.path.exists(pathOutt):
         # print("Old output file Detected: removing it!!")
         os.remove(pathOutt)
-    shutil.copy(pathOut, cur_path+"\\output")
+    shutil.copy(pathOut, cur_path+"/output")
     try:
         os.remove(pathOut)
         os.remove(file_path)
