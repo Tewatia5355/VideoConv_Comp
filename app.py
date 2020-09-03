@@ -55,9 +55,13 @@ def process_file():
     filename = secure_filename(uploaded_file.filename)
     emailId = request.form['emailaddress']
     output_file = filename
-    temp = os.getcwd() + '\\output'
-    shutil.rmtree(temp)
-    os.mkdir(temp)
+    currr_path = os.getcwd()
+    temp = currr_path + "\\output"
+    os.chdir(temp)
+    files = glob.glob('*')
+    for f in files:
+        os.remove(f)
+    os.chdir(currr_path)
     success_code = -1
     if filename != '':
         file_ext = os.path.splitext(filename)[1]
