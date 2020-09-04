@@ -14,7 +14,7 @@ from convert import conv_code
 from compressVideo import comp_code
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 1024*1024*75
+app.config['MAX_CONTENT_LENGTH'] = 1024*1024*12
 app.config['UPLOAD_EXTENSIONS'] = ['.mp4', '.m4v', '.mkv',
                                    '.webm', '.mov', '.avi', '.wmv', '.mpg', '.flv']
 app.config['UPLOAD_PATH'] = 'uploads'
